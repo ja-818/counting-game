@@ -3,29 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Counter : MonoBehaviour
 {
-    public Text counterText;
     public int count = 0;
 
+    private AudioSource audioSource;
+    private ParticleSystem particleFireflies;
+    
+    private GameManager gameManagerScript;
     private string itemName;
     private string itemColor;
-    
-    [SerializeField] private string name1 = "a";
-    [SerializeField] private string name2 = "a";
-    [SerializeField] private string name3 = "a";
-    [SerializeField] private string name4 = "a";
-    [SerializeField] private string name5 = "a";
-    [SerializeField] private string name6 = "a";
-    [Space]
-    [SerializeField] private string color1 = "a";
-    [SerializeField] private string color2 = "a";
-    [SerializeField] private string color3 = "a";
-    [SerializeField] private string color4 = "a";
-    [SerializeField] private string color5 = "a";
-    [SerializeField] private string color6 = "a";
 
+    private string name1 = "a";
+    private string name2 = "a";
+    private string name3 = "a";
+    private string name4 = "a";
+    private string name5 = "a";
+    private string name6 = "a";
+    private string color1 = "a";
+    private string color2 = "a";
+    private string color3 = "a";
+    private string color4 = "a";
+    private string color5 = "a";
+    private string color6 = "a";
     private bool enable1 = true;
     private bool enable2;
     private bool enable3;
@@ -33,7 +35,44 @@ public class Counter : MonoBehaviour
     private bool enable5;
     private bool enable6;
 
-    [SerializeField] List<String> catchedIdeasList;
+    private string lvl1 = " || 3";
+    private string lvl2 = " || 4";
+    private string lvl3 = " || 5";
+    private string lvl4 = " || 6";
+    private string maxScore;
+
+    [SerializeField] TextMeshProUGUI counterText;
+    [SerializeField] AudioClip ohNoSound;
+
+    void Start()
+    {
+        gameManagerScript = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        particleFireflies = GameObject.Find("Box Fireflies").GetComponent<ParticleSystem>();
+
+
+        if (gameManagerScript.level1 == true)
+        {
+            maxScore = lvl1;
+        }
+
+        if (gameManagerScript.level2 == true)
+        {
+            maxScore = lvl2;
+        }
+
+        if (gameManagerScript.level3 == true)
+        {
+            maxScore = lvl3;
+        }
+
+        if (gameManagerScript.level4 == true)
+        {
+            maxScore = lvl4;
+        }
+
+        counterText.text = count + maxScore;
+    }
     private void OnTriggerEnter(Collider other)
     {
         itemName = other.name;
@@ -47,6 +86,8 @@ public class Counter : MonoBehaviour
             enable1 = false;
             enable2 = true;
             count += 1;
+            audioSource.Play();
+            particleFireflies.Play();
         }
 
         if (enable2 && itemName != "registred")
@@ -54,6 +95,7 @@ public class Counter : MonoBehaviour
             if (name1 == itemName || color1 == itemColor)
             {
                 RestartValues();
+                audioSource.PlayOneShot(ohNoSound);
             }
             else
             {
@@ -63,6 +105,8 @@ public class Counter : MonoBehaviour
                 enable2 = false;
                 enable3 = true;
                 count += 1;
+                audioSource.Play();
+                particleFireflies.Play();
             }
         }
 
@@ -71,6 +115,7 @@ public class Counter : MonoBehaviour
             if (name1 == itemName || color1 == itemColor || name2 == itemName || color2 == itemColor)
             {
                 RestartValues();
+                audioSource.PlayOneShot(ohNoSound);
             }
             else
             {
@@ -80,6 +125,8 @@ public class Counter : MonoBehaviour
                 enable3 = false;
                 enable4 = true;
                 count += 1;
+                audioSource.Play();
+                particleFireflies.Play();
             }
         }
 
@@ -88,6 +135,7 @@ public class Counter : MonoBehaviour
             if (name1 == itemName || color1 == itemColor || name2 == itemName || color2 == itemColor || name3 == itemName || color3 == itemColor)
             {
                 RestartValues();
+                audioSource.PlayOneShot(ohNoSound);
             }
             else
             {
@@ -97,6 +145,8 @@ public class Counter : MonoBehaviour
                 enable4 = false;
                 enable5 = true;
                 count += 1;
+                audioSource.Play();
+                particleFireflies.Play();
             }
         }
 
@@ -105,6 +155,7 @@ public class Counter : MonoBehaviour
             if (name1 == itemName || color1 == itemColor || name2 == itemName || color2 == itemColor || name3 == itemName || color3 == itemColor || name4 == itemName || color4 == itemColor)
             {
                 RestartValues();
+                audioSource.PlayOneShot(ohNoSound);
             }
             else
             {
@@ -114,6 +165,8 @@ public class Counter : MonoBehaviour
                 enable5 = false;
                 enable6 = true;
                 count += 1;
+                audioSource.Play();
+                particleFireflies.Play();
             }
         }
 
@@ -122,15 +175,19 @@ public class Counter : MonoBehaviour
             if (name1 == itemName || color1 == itemColor || name2 == itemName || color2 == itemColor || name3 == itemName || color3 == itemColor || name4 == itemName || color4 == itemColor || name5 == itemName || color5 == itemColor)
             {
                 RestartValues();
+                audioSource.PlayOneShot(ohNoSound);
             }
             else
             {
                 count += 1;
                 name6 = itemName;
                 enable6 = false;
+                audioSource.Play();
+                particleFireflies.Play();
             }
         }
-        counterText.text = "Count : " + count;
+        counterText.text = count + maxScore;
+        Destroy(other.gameObject);
     }
     void RestartValues()
     {

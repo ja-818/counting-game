@@ -11,10 +11,10 @@ public class GameManager : MonoBehaviour
     private bool isGameActive = true;
     private bool completedLevel;
     private bool failedLevel;
-    private bool level1;
-    private bool level2;
-    private bool level3;
-    private bool level4 = true;
+    public bool level1;
+    public bool level2 = true;
+    public bool level3;
+    public bool level4;
     private int gameDuration = 60;
     private float spawnDelay;
     private int randomIdeaIndex;
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(spawnDelay);
             spawnRange = new Vector3(Random.Range(-10, 10), 12, -1);
             randomIdeaIndex = Random.Range(0, numberOfIdeas);
-            idea = Instantiate(ideasPrefabsArray[randomIdeaIndex], spawnRange, Quaternion.identity);
+            idea = Instantiate(ideasPrefabsArray[randomIdeaIndex], spawnRange, ideasPrefabsArray[randomIdeaIndex].gameObject.transform.rotation);
             idea.GetComponent<Renderer>().material = colorsArray[Random.Range(0, numberOfIdeas)];
         }
     }
