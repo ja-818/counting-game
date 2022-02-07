@@ -43,6 +43,7 @@ public class Counter : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI counterText;
     [SerializeField] AudioClip ohNoSound;
+    private float ohNoLevel = 0.4f;
 
     void Start()
     {
@@ -95,7 +96,7 @@ public class Counter : MonoBehaviour
             if (name1 == itemName || color1 == itemColor)
             {
                 RestartValues();
-                audioSource.PlayOneShot(ohNoSound);
+                audioSource.PlayOneShot(ohNoSound, ohNoLevel);
             }
             else
             {
@@ -115,7 +116,7 @@ public class Counter : MonoBehaviour
             if (name1 == itemName || color1 == itemColor || name2 == itemName || color2 == itemColor)
             {
                 RestartValues();
-                audioSource.PlayOneShot(ohNoSound);
+                audioSource.PlayOneShot(ohNoSound, ohNoLevel);
             }
             else
             {
@@ -135,7 +136,7 @@ public class Counter : MonoBehaviour
             if (name1 == itemName || color1 == itemColor || name2 == itemName || color2 == itemColor || name3 == itemName || color3 == itemColor)
             {
                 RestartValues();
-                audioSource.PlayOneShot(ohNoSound);
+                audioSource.PlayOneShot(ohNoSound, ohNoLevel);
             }
             else
             {
@@ -155,7 +156,7 @@ public class Counter : MonoBehaviour
             if (name1 == itemName || color1 == itemColor || name2 == itemName || color2 == itemColor || name3 == itemName || color3 == itemColor || name4 == itemName || color4 == itemColor)
             {
                 RestartValues();
-                audioSource.PlayOneShot(ohNoSound);
+                audioSource.PlayOneShot(ohNoSound, ohNoLevel);
             }
             else
             {
@@ -175,7 +176,7 @@ public class Counter : MonoBehaviour
             if (name1 == itemName || color1 == itemColor || name2 == itemName || color2 == itemColor || name3 == itemName || color3 == itemColor || name4 == itemName || color4 == itemColor || name5 == itemName || color5 == itemColor)
             {
                 RestartValues();
-                audioSource.PlayOneShot(ohNoSound);
+                audioSource.PlayOneShot(ohNoSound, ohNoLevel);
             }
             else
             {
