@@ -35,13 +35,7 @@ public class Counter : MonoBehaviour
     private bool enable5;
     private bool enable6;
 
-    private string lvl1 = " || 3";
-    private string lvl2 = " || 4";
-    private string lvl3 = " || 5";
-    private string lvl4 = " || 6";
-    private string maxScore;
-
-    [SerializeField] TextMeshProUGUI counterText;
+    public TextMeshProUGUI counterText;
     [SerializeField] AudioClip ohNoSound;
     private float ohNoLevel = 0.4f;
 
@@ -50,29 +44,6 @@ public class Counter : MonoBehaviour
         gameManagerScript = GameObject.Find("Game Manager").GetComponent<GameManager>();
         audioSource = gameObject.GetComponent<AudioSource>();
         particleFireflies = GameObject.Find("Box Fireflies").GetComponent<ParticleSystem>();
-
-
-        if (gameManagerScript.level1 == true)
-        {
-            maxScore = lvl1;
-        }
-
-        if (gameManagerScript.level2 == true)
-        {
-            maxScore = lvl2;
-        }
-
-        if (gameManagerScript.level3 == true)
-        {
-            maxScore = lvl3;
-        }
-
-        if (gameManagerScript.level4 == true)
-        {
-            maxScore = lvl4;
-        }
-
-        counterText.text = count + maxScore;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -187,10 +158,10 @@ public class Counter : MonoBehaviour
                 particleFireflies.Play();
             }
         }
-        counterText.text = count + maxScore;
+        counterText.text = count + gameManagerScript.maxCountText;
         Destroy(other.gameObject);
     }
-    void RestartValues()
+    public void RestartValues()
     {
         color1 = "a";
         color2 = "a";

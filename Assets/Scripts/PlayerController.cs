@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float horizontalBound = 10;
+    private float horizontalBound = 7;
     private ParticleSystem particleSmoke;
 
     [SerializeField] float speed = 30f;
